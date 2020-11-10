@@ -1,13 +1,12 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const controller = require('./middleware/controller');
-const templating = require('./templating');
+const controller = require('./lib/controller');
 
 const app = new Koa();
 const isProduction = process.env.NODE_ENV === 'production';
 console.log('now env is' + process.env.NODE_ENV);
 
-// 打印log
+// 打印log 计算请求的响应时间
 app.use(async (ctx, next) => {
     console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
     var
@@ -18,9 +17,9 @@ app.use(async (ctx, next) => {
     ctx.response.set('X-Response-Time', `${execTime}ms`);
 });
 
-// 加载静态资源
+// 加载静态资源 如果路径是static开头的则只是静态解析
 if (! isProduction) {
-    let staticFiles = require('./static_files');
+    let staticFiles = require('./lib/static_files');
     app.use(staticFiles('/static/', __dirname + '/static'));
 }
 
@@ -28,6 +27,7 @@ if (! isProduction) {
 app.use(bodyParser());
 
 // 加载模版文件 add nunjucks as view:
+const templating = require('./lib/templating');
 app.use(templating('views', {
     noCache: true, // 是否开启模版缓存
     watch: true
