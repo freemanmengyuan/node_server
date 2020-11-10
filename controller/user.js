@@ -19,7 +19,7 @@ var add = async (ctx, next) => {
     const result = {
         err: 0,
         msg: 'success',
-        data: user 
+        data: user
     }
     ctx.response.body = result;
 }

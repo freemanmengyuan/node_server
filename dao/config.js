@@ -1,5 +1,5 @@
 // config files:
-const defaultConfig = '../conf/config-default.js';
+const defaultConfig = '../conf/default.js';
 const overrideConfig = '../conf/config-override.js';
 const testConfig = '../conf/config-test.js';
 
