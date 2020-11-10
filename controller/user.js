@@ -15,13 +15,13 @@ var add = async (ctx, next) => {
         gender: false,
         email: 'john-' + Date.now() + '@garfield.pet',
         passwd: '123456'
-    });
+    })
     const result = {
         err: 0,
         msg: 'success',
         data: user
     }
-    ctx.response.body = result;
+    ctx.response.body = result
 }
 
 module.exports = {
