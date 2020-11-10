@@ -11,9 +11,9 @@ var users = async (ctx, next) => {
 // 新增用户
 var add = async (ctx, next) => {
     var user = await User.create({
-        name: 'tom',
+        name: 'john',
         gender: false,
-        email: 'tom-' + Date.now() + '@garfield.pet',
+        email: 'john-' + Date.now() + '@garfield.pet',
         passwd: '123456'
     });
     const result = {
